@@ -23,13 +23,13 @@ int main()
   int colChoice;
   int playerNum;
   char marker;
-  int gameNum = 0;
+  int gameNum = 1;
 
   do
   {
     clearBoard(board);
 
-    if (gameNum)
+    if (gameNum % 2 == 0)
       marker = 'X';
     else
       marker = 'O';
