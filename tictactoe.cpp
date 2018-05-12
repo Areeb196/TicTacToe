@@ -1,6 +1,6 @@
 #include "tictactoe.h"
 
-bool gameOver(char board[3][3])
+bool gameOver(const char board[3][3])
 {
   if((board[0][0] == board[0][1] && board[0][1] == board[0][2] && (board[0][0] == 'X' || board[0][0] == 'O')) ||
     (board[1][0] == board[1][1] && board[1][1] == board[1][2] && (board[1][0] == 'X' || board[1][0] == 'O')) ||
@@ -14,7 +14,7 @@ bool gameOver(char board[3][3])
   return false;
 }
 
-bool draw(char board[3][3])
+bool draw(const char board[3][3])
 {
   int num = 0;
   for (int i = 0; i < 3; i++)
@@ -39,7 +39,7 @@ void switchMark(char & mark)
   return;
 }
 
-void makeMove(char board[3][3], int & row, int & col)
+void makeMove(const char board[3][3], int & row, int & col)
 {
   cout << "Enter a position (rows then cols)" << endl;
   do
@@ -52,7 +52,7 @@ void makeMove(char board[3][3], int & row, int & col)
   return;
 }
 
-void showBoard(char board[3][3])
+void showBoard(const char board[3][3])
 {
   cout << " | 0 | 1 | 2 |" << endl;
   cout << "--------------" << endl;
@@ -73,7 +73,7 @@ void clearBoard(char board[3][3])
   return;
 }
 
-char winner(char board[3][3])
+char winner(const char board[3][3])
 {
   char win;
   if (board[0][0] == board[0][1] && board[0][1] == board[0][2] && (board[0][0] == 'X' || board[0][0] == 'O'))
@@ -102,7 +102,7 @@ char otherMark(char mark)
   return 'X';
 }
 
-int minimax(char board[3][3], char mark, int turns, bool max)
+int minimax(char board[3][3], const char mark, const int turns, const bool max)
 {
   int score;
   int temp;
@@ -156,7 +156,7 @@ int minimax(char board[3][3], char mark, int turns, bool max)
   return score;
 }
 
-void computer(char board[3][3], char mark)
+void computer(char board[3][3], const char mark)
 {
   int temp;
   int maxScore = -100;
