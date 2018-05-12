@@ -102,7 +102,7 @@ char otherMark(char mark)
   return 'X';
 }
 
-int minimax(char board[3][3], const char mark, const int turns, const bool max)
+int minimax(char board[3][3], const char mark, const int turns, const bool max, int alpha, int beta)
 {
   int score;
   int temp;
@@ -127,10 +127,15 @@ int minimax(char board[3][3], const char mark, const int turns, const bool max)
         if (board[i][j] == ' ')
         {
           board[i][j] = mark;
-          temp = minimax(board, mark, turns + 1, false);
+          temp = minimax(board, mark, turns + 1, false, alpha, beta);
           board[i][j] = ' ';
           if (temp > score)
+          {
             score = temp;
+            alpha = temp;
+          }
+          if (alpha > beta)
+            break;
         }
       }
     }
@@ -145,10 +150,15 @@ int minimax(char board[3][3], const char mark, const int turns, const bool max)
         if (board[i][j] == ' ')
         {
           board[i][j] = otherMark(mark);
-          temp = minimax(board, mark, turns + 1, true);
+          temp = minimax(board, mark, turns + 1, true, alpha, beta);
           board[i][j] = ' ';
           if (temp < score)
+          {
             score = temp;
+            beta = temp;
+          }
+          if (beta < alpha)
+            break;
         }
       }
     }
@@ -170,7 +180,7 @@ void computer(char board[3][3], const char mark)
       if (board[i][j] == ' ')
       {
         board[i][j] = mark;
-        temp = minimax(board, mark, 0, false);
+        temp = minimax(board, mark, 0, false, -100, 100);
         board[i][j] = ' ';
         if (temp > maxScore)
         {
