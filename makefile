@@ -12,5 +12,5 @@ tictactoe.o: tictactoe.cpp tictactoe.h
 	g++ -c tictactoe.cpp
 
 clean:
-	-@rm -f *.o
-	-@rm -f h
+  -@rm -f *.o
+  -@rm -f h
